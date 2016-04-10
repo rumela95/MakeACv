@@ -1,0 +1,24 @@
+body {
+	background-image: url("background.jpg");
+}
+.weird-font-large{
+	font-size: 400%;
+	color : #56cef4;
+	font-family: 'Allura', cursive;
+}
+.weird-font-small{
+	font-size: 200%;
+	color : #56cef4;
+	font-family: 'Allura', cursive;
+}
+h2 {
+	text-align: center;
+	font-size: 150%;
+}
+form {
+	text-align: center;
+}
+.sec	{
+	margin: 20px;
+	text-align: center;
+}
