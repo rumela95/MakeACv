@@ -13,12 +13,12 @@ Prequisites - PHP, Composer , MongoDB
 
 1. Database - swproject
 
- * Collection - users
+ 1. Collection - users
   1. user_id (_id)
   2. username
   3. password
   
- * Collection - work
+ 2. Collection - work
   1. user_id
   2. organisation
   3. position
@@ -26,7 +26,7 @@ Prequisites - PHP, Composer , MongoDB
   5. details
   6. achievements
  
- * Collection - personal
+ 3. Collection - personal
   1. user_id
   2. name
   3. phone
@@ -35,7 +35,7 @@ Prequisites - PHP, Composer , MongoDB
   6. address
   7. achievements
   
- * Collection - education
+ 4. Collection - education
   1. user_id
   2. degree
   3. institution
