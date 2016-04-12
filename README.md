@@ -12,33 +12,32 @@ Prequisites - PHP, Composer , MongoDB
 ###MongoDB structure
 
 1. Database - swproject
-
- 1. Collection - users
-  1. user_id (_id)
-  2. username
-  3. password
+  1. Collection - users
+    * user_id (_id)
+    * username
+    * password
   
- 2. Collection - work
-  1. user_id
-  2. organisation
-  3. position
-  4. duration
-  5. details
-  6. achievements
+  2. Collection - work
+    * user_id
+    * organisation
+    * position
+    * duration
+    * details
+    * achievements
  
- 3. Collection - personal
-  1. user_id
-  2. name
-  3. phone
-  4. email
-  5. DOB
-  6. address
-  7. achievements
-  
- 4. Collection - education
-  1. user_id
-  2. degree
-  3. institution
-  4. percentage
-  5. end_year
-  6. achievements
+  3. Collection - personal
+    * user_id
+    * name
+    * phone
+    * email
+    * dob
+    * address
+    * achievements
+
+  4. Collection - education
+    * user_id
+    * degree
+    * institution
+    * percentage
+    * end_year
+    * achievements
