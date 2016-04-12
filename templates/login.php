@@ -69,7 +69,7 @@
 			<br>
 			<div class="sec">
 				<p class="weird-font-large"> New user? </p>
-				<a class ="btn btn-primary btn-lg" href="reg"> Register </a>
+				<a class ="btn btn-primary btn-lg" href="/registration"> Register </a>
 			</div>
 		</div>
 	</body>

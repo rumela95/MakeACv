@@ -1,19 +1,14 @@
 <html>
 	<head>
 		<title>Dashboard</title>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
 		<link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
 			
-		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		
 	</head>
 	<style type="text/css">
 		body {
@@ -25,24 +20,161 @@
 			font-family: 'Allura', cursive;
 		}
 		.weird-font-small{
-			font-size: 200%;
 			color : #56cef4;
 			font-family: 'Allura', cursive;
 		}
-		h2 {
+		h2,h1 {
 			text-align: center;
 			font-size: 150%;
 		}
 		form {
 			text-align: center;
 		}
-		.sec	{
-			margin: 20px;
+		.sec {
+			padding: 50px 50px;
+		}
+		button {
+			text-align: left;
+		}
+		.container {
+			font-size: 200%;
+			color : #56cef4;
+			font-family: 'Allura', cursive;
 			text-align: center;
 		}
-	</style>
+		h3 {
+			font-size:
+		}
+		.collapse {
+			padding : 20px 20px;
+		}
+		</style>
 	<body>
-		<h1 class= "weird-font-large"> Hello <?= $username ?> </h1>
+		<h1 class= "weird-font-large"><?= $username ?>'s Dashboard</h1>
+		<div class="container">
+			<ul class="nav nav-tabs nav-justified">
+				<li class="active"><a data-toggle="tab" href="#cv">CV Options</a></li>
+				<li><a data-toggle="tab" href="#personal">Personal Details</a></li>
+				<li><a data-toggle="tab" href="#work">Work Experience</a></li>
+				<li><a data-toggle="tab" href="#education">Educational Details</a></li>
+			 </ul>
+
+			<div class="tab-content">
+				<div id="cv" class="tab-pane fade in active">
+					<h2>CV Options</h2>
+					
+				</div>
+				<div id="personal" class="tab-pane fade">
+					<h2>Personal Details</h2>
+					<div class='sec'>
+						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_personal"><i class="fa fa-plus"></i>Add</button>
+						<div id="new_personal" class="collapse">
+							<form role="form" method="POST" action="/addPersonal">
+								<div class = "form-group" style = "display : none ">
+									<input type="text" name="user_id" id ="user_id" value = "<?= $user_id ?>"></input>
+								</div>
+								
+								<div class = "form-group">
+									<label for="name" class="weird-font-small"> Name </label>
+									<input type="text" name="name" id ="name"></input>
+								</div>
+								<div class = "form-group">
+									<label for="phone" class="weird-font-small"> Phone </label>
+									<input type="text" name="phone" id="phone"></input>
+								</div>
+								<div class = "form-group">
+									<label for="email" class="weird-font-small"> Email</label>
+									<input type="text" name="email" id ="email"></input>
+								</div>
+								<div class = "form-group">
+									<label for="dob" class="weird-font-small"> Date of Birth</label>
+									<input type="text" name="dob" id ="dob"></input>
+								</div>
+								<div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Address </label>
+									<textarea rows="4" cols="50" name="address" id="address"></textarea>
+								</div>
+								<div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Achievements </label>
+									<textarea rows="4" cols="50" name="achievements" id="achievements"></textarea>
+								</div>
+								<input type="submit" class ="btn btn-primary btn-lg" value="Add"></input>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div id="work" class="tab-pane fade">
+					<h2>Work Experience</h2>
+					<div class='sec'>
+						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_work"><i class="fa fa-plus"></i>Add New</button>
+						<div id="new_work" class="collapse">
+							<form role="form" method="POST" action="/addWork">
+								<div class = "form-group" style = "display : none ">
+									<input type="text" name="user_id" id ="user_id" value = "<?= $user_id ?>"></input>
+								</div>
+								
+								<div class = "form-group">
+									<label for="organisation" class="weird-font-small"> Organisation </label>
+									<input type="text" name="organisation" id ="organisation"></input>
+								</div>
+								<div class = "form-group">
+									<label for="position" class="weird-font-small"> Position </label>
+									<input type="text" name="position" id="position"></input>
+								</div>
+								<div class = "form-group">
+									<label for="duration" class="weird-font-small"> Duration (in months)</label>
+									<input type="text" name="duration" id ="duration"></input>
+								</div>
+								<div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Details </label>
+									<textarea rows="4" cols="50" name="details" id="details"></textarea>
+								</div>
+								<div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Achievements </label>
+									<textarea rows="4" cols="50" name="achievements" id="achievements"></textarea>
+								</div>
+								<input type="submit" class ="btn btn-primary btn-lg" value="Add"></input>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div id="education" class="tab-pane fade">
+					<h2>Educational Details</h2>
+					<div class='sec'>
+						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_education"><i class="fa fa-plus"></i>Add New</button>
+						<div id="new_education" class="collapse">
+							<form role="form" method="POST" action="/addEducation">
+								<div class = "form-group" style = "display : none ">
+									<input type="text" name="user_id" id ="user_id" value = "<?= $user_id ?>"></input>
+								</div>
+								
+								<div class = "form-group">
+									<label for="degree" class="weird-font-small"> Degree </label>
+									<input type="text" name="degree" id ="degree"></input>
+								</div>
+								<div class = "form-group">
+									<label for="institution" class="weird-font-small"> Institution </label>
+									<input type="text" name="institution" id="institution"></input>
+								</div>
+								<div class = "form-group">
+									<label for="percentage" class="weird-font-small"> Percentage of Marks </label>
+									<input type="text" name="percentage" id ="percentage"></input>
+								</div>
+								<div class = "form-group">
+									<label for="end_year" class="weird-font-small"> End Year </label>
+									<input type="text" name="end_year" id ="end_year"></input>
+								</div>
+								<div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Achievements </label>
+									<textarea rows="4" cols="50" name="achievements" id="achievements"></textarea>
+								</div>
+								<input type="submit" class ="btn btn-primary btn-lg" value="Add"></input>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 
 </html>
