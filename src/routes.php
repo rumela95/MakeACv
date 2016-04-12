@@ -21,13 +21,18 @@ $app->post('/login', function ($request, $response, $args) {
 	}
 });
 
+$app->get('/registration', function ($request, $response, $args) {
+	
+	return $this->renderer->render($response, 'register.php', $args);
+});
+
 $app->post('/register', function ($request, $response, $args) {
 	
 	$client = new MongoDB\Client("mongodb://localhost:27017");
     if($_POST['newPassword'] != $_POST['confPassword'])
     {  
         $args['message'] = "Passwords do not match!";
-        return $response->withRedirect('/reg?'.http_build_query($args));
+        return $response->withRedirect('/registration?'.http_build_query($args));
 
     }
 	$usersTable = $client->swproject->users;
@@ -40,7 +45,7 @@ $app->post('/register', function ($request, $response, $args) {
 	else
 	{
 		$args['message']= "User already exists";
-		return $response->withRedirect('/reg?'.http_build_query($args));
+		return $response->withRedirect('/registration?'.http_build_query($args));
 	}
 });
 
@@ -52,12 +57,48 @@ $app->get('/dashboard', function ($request, $response, $args) {
 	$user_id = new MongoDB\BSON\ObjectId($_GET['user_id']);
 	$user = $usersTable->findOne(['_id'=> $user_id ]);
 	$args['username'] = $user['username'];
+	$args['user_id'] = $_GET['user_id'];
 	return $this->renderer->render($response, 'dashboard.php', $args);
 });
 
-$app->get('/reg', function ($request, $response, $args) {
-	
-	return $this->renderer->render($response, 'register.php', $args);
+$app->post('/addWork', function ($request, $response, $args) {
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$workTable = $client->swproject->work;
+	$workTable->insertOne(['user_id' => $_POST['user_id'], 
+						'organisation' => $_POST['organisation'], 
+						'position' => $_POST['position'], 
+						'duration' => $_POST['duration'],
+						'details' => $_POST['details'],
+						'achievements' => $_POST['achievements']
+					]);
+	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
+});
+
+$app->post('/addPersonal', function ($request, $response, $args) {
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$personalTable = $client->swproject->personal;
+	$personalTable->insertOne(['user_id' => $_POST['user_id'], 
+						'name' => $_POST['name'], 
+						'phone' => $_POST['phone'], 
+						'dob' => $_POST['dob'],
+						'email' => $_POST['email'],
+						'address' => $_POST['address'],
+						'achievements' => $_POST['achievements']
+					]);
+	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
+});
+
+$app->post('/addEducation', function ($request, $response, $args) {
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$personalTable = $client->swproject->education;
+	$personalTable->insertOne(['user_id' => $_POST['user_id'], 
+						'degree' => $_POST['degree'], 
+						'institution' => $_POST['institution'], 
+						'percentage' => $_POST['percentage'],
+						'end_year' => $_POST['end_year'],
+						'achievements' => $_POST['achievements']
+					]);
+	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
 });
 
 $app->get('/get_users', function ($request, $response, $args) {
