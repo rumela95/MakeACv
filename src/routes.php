@@ -27,6 +27,7 @@ $app->get('/dashboard', function ($request, $response, $args) {
 	
 	$client = new MongoDB\Client("mongodb://localhost:27017");
 	$usersTable = $client->swproject->users;
+	
 	$user_id = new MongoDB\BSON\ObjectId($_GET['user_id']);
 	$user = $usersTable->findOne(['_id'=> $user_id ]);
 	$args['username'] = $user['username'];
