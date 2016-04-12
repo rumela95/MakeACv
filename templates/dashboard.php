@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Login</title>
+		<title>Dashboard</title>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -40,37 +40,9 @@
 			margin: 20px;
 			text-align: center;
 		}
-		.error {
-			color : #FF0000;
-			font-family: 'Allura', cursive;
-			font-size: 250%;
-		}
 	</style>
 	<body>
-		<div class= 'container'>
-			<h2 class = 'weird-font-large'> Make a CV </h2>
-			<div class="sec">
-				<?php if( isset($_GET['message']) && ($_GET['message']!=null) ) { ?>
-					<p class="error"> <?= $_GET['message']?> </p>
-				<?php } ?>
-				<form role="form" method="POST" action="/login">
-					<div class = "form-group">
-						<label for="username" class="weird-font-small"> Username </label>
-						<input type="text" name="username" id ="username"></input>
-					</div>
-					<div class = "form-group">
-						<label for="password" class="weird-font-small"> Password </label>
-						<input type="text" name="password" id="password"></input>
-					</div>
-					<input type="submit" class ="btn btn-primary btn-lg" value="Login"> </input>
-				</form>
-			</div>
-			<br>
-			<br>
-			<div class="sec">
-				<p class="weird-font-large"> New user? </p>
-				<a class ="btn btn-primary btn-lg" href="#"> Register </a>
-			</div>
-		</div>
+		<h1 class= "weird-font-large"> Hello <?= $username ?> </h1>
 	</body>
+
 </html>
