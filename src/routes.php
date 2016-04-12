@@ -1,7 +1,5 @@
 <?php
 // Routes
-
-
 $app->get('/', function ($request, $response, $args) {
 	return $this->renderer->render($response, 'login.php', $args);
 });
@@ -23,6 +21,29 @@ $app->post('/login', function ($request, $response, $args) {
 	}
 });
 
+$app->post('/register', function ($request, $response, $args) {
+	
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+    if($_POST['newPassword'] != $_POST['confPassword'])
+    {  
+        $args['message'] = "Passwords do not match!";
+        return $response->withRedirect('/reg?'.http_build_query($args));
+
+    }
+	$usersTable = $client->swproject->users;
+	$user = $usersTable->findOne(['username' => $_POST['newUsername']]);
+	if(is_null($user))
+	{
+		$usersTable->insertOne(['username'=> $_POST['newUsername'], 'password'=> $_POST['newPassword']]);
+        return $response->withRedirect('/?'.http_build_query($args));
+	}
+	else
+	{
+		$args['message']= "User already exists";
+		return $response->withRedirect('/reg?'.http_build_query($args));
+	}
+});
+
 $app->get('/dashboard', function ($request, $response, $args) {
 	
 	$client = new MongoDB\Client("mongodb://localhost:27017");
@@ -32,6 +53,11 @@ $app->get('/dashboard', function ($request, $response, $args) {
 	$user = $usersTable->findOne(['_id'=> $user_id ]);
 	$args['username'] = $user['username'];
 	return $this->renderer->render($response, 'dashboard.php', $args);
+});
+
+$app->get('/reg', function ($request, $response, $args) {
+	
+	return $this->renderer->render($response, 'register.php', $args);
 });
 
 $app->get('/get_users', function ($request, $response, $args) {
@@ -46,7 +72,6 @@ $app->get('/get_users', function ($request, $response, $args) {
 	
 	return $this->renderer->render($response, 'users.php', $args);
 });
-
 //pass in the filename of the file to be captured in the url, eg. 
 // /capture?filename=login 
 // will generate the pdf of login.php located in the templates folders
