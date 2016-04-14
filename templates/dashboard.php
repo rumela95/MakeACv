@@ -48,7 +48,54 @@
 		.collapse {
 			padding : 20px 20px;
 		}
-		</style>
+        .dropbtn {
+            background-color: #f9f9f9;
+            color: white;
+            font-size: 30px;
+            padding: 12px 16px;
+            border: none;
+            float: left;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            float: left;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            float:left;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            width: 200px;
+            text-decoration: none;
+            display: block;
+            
+        }
+
+        .dropdown-content a:hover {
+            background-color: #56cef4 
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        </style>
+    
+        
+    
+    
+    
+    
+    
 	<body>
 		<h1 class= "weird-font-large"><?= $username ?>'s Dashboard</h1>
 		<div class="container">
@@ -60,9 +107,28 @@
 			 </ul>
 
 			<div class="tab-content">
-				<div id="cv" class="tab-pane fade in active">
-					<h2>CV Options</h2>
-					
+				<div id="cv" class="tab-pane fade in active" >
+                    <h2>CV Options</h2>
+                    <div id= "choice" class = "dropdown dropbtn btn"><a>Select Template</a>
+                        <div class="dropdown-content" style="left = 0" >
+                            <a href="?choice=1">CV</a>
+                            <a href="?choice=2" >Resume</a>
+                            <a href="?choice=3">Bio-data</a>
+                            
+                        </div>
+                    
+                    </div>
+                    <div id="choice">
+                    <?php 
+                        switch($_GET['choice']){
+                            case 1: include 'cv.php'; break;
+                            case 2: include 'resume.php'; break;
+                            case 3: include 'biodata.php'; break;
+                            default:
+                                    
+                        }
+                    ?>
+                    </div>
 				</div>
 				<div id="personal" class="tab-pane fade">
 					<h2>Personal Details</h2>
@@ -176,5 +242,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>
