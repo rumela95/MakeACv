@@ -26,6 +26,7 @@ $app->get('/registration', function ($request, $response, $args) {
 	return $this->renderer->render($response, 'register.php', $args);
 });
 
+
 $app->post('/register', function ($request, $response, $args) {
 	
 	$client = new MongoDB\Client("mongodb://localhost:27017");
