@@ -13,6 +13,8 @@
 	<style type="text/css">
 		body {
 			background-image: url("background.jpg");
+			margin: 0;
+			padding: 0;
 		}
 		.weird-font-large{
 			font-size: 400%;
@@ -88,28 +90,115 @@
             display: block;
         }
         
+		.description {
+            text-color : #9AF8FF;
+            text-align : center;
+            padding: 20px;
+            text-font: "Allura";
+            background-color: "none";
+        }
+        
+        .cv {
+            display: block;
+			font-size: 100%;
+        }
+		.resume {
+			display: block;
+			font-size: 98%;
+			padding-bottom: 26px;
+		}
+		.biodata {
+            display:"block";
+			font-size: 88%;
+			padding-bottom: 22px;
+        }
+		.templates {
+			padding : 30px 30px;
+		}
+		a {
+			color :  #56cef4;
+			font-family: 'Allura', cursive;
+			font-size: 100%;
+		}
+				
         </style>
     
-        
-    
-    
-    
-    
-    
 	<body>
+		<button type="button" class="btn btn-danger btn-lg" style="float:right; top: 10px; margin-right: 10px; font-family: 'Allura'" data-toggle="modal" data-target="#myModal"><i class="fa fa-power-off"></i></button>
 		<h1 class= "weird-font-large"><?= $username ?>'s Dashboard</h1>
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Logout</h4>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure you want to logout?</p>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-success" href="/home">Yes</a>
+						<a class="btn btn-danger" data-dismiss="modal">No</a>
+					</div>
+				</div>
+      
+			</div>
+		</div>
 		<div class="container">
 			<ul class="nav nav-tabs nav-justified">
-				<li class="active"><a data-toggle="tab" href="#cv">CV Options</a></li>
-				<li><a data-toggle="tab" href="#personal">Personal Details</a></li>
-				<li><a data-toggle="tab" href="#work">Work Experience</a></li>
-				<li><a data-toggle="tab" href="#education">Educational Details</a></li>
+				<li class="active"><a data-toggle="tab" href="#cv"><i class="fa fa-cog"></i>  CV Options</a></li>
+				<li><a data-toggle="tab" href="#personal"><i class="fa fa-male"></i>  Personal Details</a></li>
+				<li><a data-toggle="tab" href="#work"><i class="fa fa-industry"></i>  Work Experience</a></li>
+				<li><a data-toggle="tab" href="#education"><i class="fa fa-graduation-cap"></i> Educational Details</a></li>
 			 </ul>
 
 			<div class="tab-content">
 				<div id="cv" class="tab-pane fade in active" >
-                    <h2>CV Options</h2>
-                    <div id= "choice" class = "dropdown dropbtn btn"><a>Select Template</a>
+		            <h2>Select a Template</h2>
+					<div class="templates">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3> CV </h3>
+									</div>
+									<div class="panel-body">
+										<p class = "cv description">Projects. Internships. Academics. And you are getting ready to go on board with the first of your real jobs. If this is your story, then go ahead and create your <strong>CV</strong>, highlighting your academics, projects and internships.</p>
+									</div>
+									<div class="panel-footer">
+										<a class="btn btn-info btn-lg" href="#">Create CV  <i class="fa fa-chevron-right"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3> Resume </h3>
+									</div>
+									<div class="panel-body">
+										<p class = "resume description">Does your experiences in the industry define your personnel? Then go ahead to make your <strong>Resume</strong> that will highlight your tresure chest of knowledge and encourage employers across the globe to hire you. GO AHEAD! Make the mark!</p>
+									</div>
+									<div class="panel-footer">
+										<a class="btn btn-info btn-lg" href="#">Create Resume  <i class="fa fa-chevron-right"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3> Bio-data </h3>
+									</div>
+									<div class="panel-body">
+										<p class = "biodata description">Stepping your first few steps in this wide world named "INDUSTRY"? Well you are at the right place. A Biodata will wrap up the "you" that you are in the most effective way and help you reach out to the world. So start making your <strong>Biodata</strong> and give a kick start to your career NOW!!</p>
+									</div>
+									<div class="panel-footer">
+										<a class="btn btn-info btn-lg" href="#">Create Bio-data  <i class="fa fa-chevron-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                   <!-- <div id= "choice" class = "dropdown dropbtn btn"><a>Select Template</a>
                         <div class="dropdown-content" style="left = 0" >
                             <a href="?choice=1">CV</a>
                             <a href="?choice=2" >Resume</a>
@@ -119,7 +208,7 @@
                     
                     </div>
                     <div id="choice">
-                    <?php 
+                    </*?php 
                         switch($_GET['choice']){
                             case 1: include 'cv.php'; break;
                             case 2: include 'resume.php'; break;
@@ -128,7 +217,7 @@
                                     
                         }
                     ?>
-                    </div>
+                    </div> -->
 				</div>
 				<div id="personal" class="tab-pane fade">
 					<h2>Personal Details</h2>

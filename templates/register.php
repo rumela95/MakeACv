@@ -45,6 +45,11 @@
 			font-family: 'Allura', cursive;
 			font-size: 250%;
 		}
+		input {
+			color :  #56cef4;
+			font-family: 'Allura', cursive;
+			font-size: 200%;
+		}
 	</style>
 	<body>
 		<div class= 'container'>
