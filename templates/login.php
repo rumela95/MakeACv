@@ -1,19 +1,12 @@
 <html>
 	<head>
 		<title>Login</title>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
 		<link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
-			
-		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	</head>
 	<style type="text/css">
 		body {
@@ -37,13 +30,18 @@
 			text-align: center;
 		}
 		.sec	{
-			margin: 20px;
+			padding: 50px 50px;
 			text-align: center;
 		}
 		.error {
 			color : #FF0000;
 			font-family: 'Allura', cursive;
 			font-size: 250%;
+		}
+		a, button, input {
+			color :  #56cef4;
+			font-family: 'Allura', cursive;
+			font-size: 200%;
 		}
 	</style>
 	<body>
@@ -53,24 +51,39 @@
 				<?php if( isset($_GET['message']) && ($_GET['message']!=null) ) { ?>
 					<p class="error"> <?= $_GET['message']?> </p>
 				<?php } ?>
-				<form role="form" method="POST" action="/login">
-					<div class = "form-group">
-						<label for="username" class="weird-font-small"> Username </label>
-						<input type="text" name="username" id ="username"></input>
+				<ul class="nav nav-tabs nav-justified">
+					<li class="active"><a data-toggle="tab" href="#register">Register</a></li>
+					<li><a data-toggle="tab" href="#login">Login</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="register" class="tab-pane fade in active">
+						<div class="sec">
+							<p class="weird-font-large"> New user? </p>
+							<a class ="btn btn-primary btn-lg" href="/registration"> Register </a>
+						</div>
 					</div>
-					<div class = "form-group">
-						<label for="password" class="weird-font-small"> Password </label>
-						<input type="text" name="password" id="password"></input>
+					<div id="login" class="tab-pane fade">
+						<div class="sec">
+							<p class="weird-font-large"> Got an account? </p>
+							<form role="form" method="POST" action="/login">
+								<div class = "form-group">
+									<label for="username" class="weird-font-small"> Username </label>
+									<input type="text" name="username" id ="username"></input>
+								</div>
+								<div class = "form-group">
+									<label for="password" class="weird-font-small"> Password </label>
+									<input type="text" name="password" id="password"></input>
+								</div>
+								<input type="submit" class ="btn btn-primary btn-lg" value="Login"> </input>
+							</form>
+						</div>
 					</div>
-					<input type="submit" class ="btn btn-primary btn-lg" value="Login"> </input>
-				</form>
+				</div>
+				
 			</div>
 			<br>
 			<br>
-			<div class="sec">
-				<p class="weird-font-large"> New user? </p>
-				<a class ="btn btn-primary btn-lg" href="/registration"> Register </a>
-			</div>
+			
 		</div>
 	</body>
 </html>
