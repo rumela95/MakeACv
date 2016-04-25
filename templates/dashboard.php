@@ -179,7 +179,7 @@
 										<p class = "resume description">Does your experiences in the industry define your personnel? Then go ahead to make your <strong>Resume</strong> that will highlight your tresure chest of knowledge and encourage employers across the globe to hire you. GO AHEAD! Make the mark!</p>
 									</div>
 									<div class="panel-footer">
-										<a class="btn btn-info btn-lg" href="#">Create Resume  <i class="fa fa-chevron-right"></i></a>
+										<a class="btn btn-info btn-lg" href="/resume?user_id=<?php echo $_GET['user_id'];?>">Create Resume  <i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>

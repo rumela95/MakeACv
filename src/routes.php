@@ -31,6 +31,7 @@ $app->get('/registration', function ($request, $response, $args) {
 });
 
 
+
 $app->post('/register', function ($request, $response, $args) {
 	
 	$client = new MongoDB\Client("mongodb://localhost:27017");
@@ -66,6 +67,41 @@ $app->get('/dashboard', function ($request, $response, $args) {
 	return $this->renderer->render($response, 'dashboard.php', $args);
 });
 
+$app->get('/resume', function ($request, $response, $args) {
+	
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$usersTable = $client->swproject->users;
+    $personalTable = $client->swproject->personal;
+    $workTable = $client->swproject->work;
+    $educationTable = $client->swproject->education;
+    
+	$user_id = $_GET['user_id'];
+    
+	$personal = $personalTable->findOne(['user_id' => $_GET['user_id']]);
+    $args['personal'] = $personal;
+    
+        
+    
+	$cursor1 = $workTable->find(['user_id' => $_GET['user_id']]);
+    $work=[];
+    foreach($cursor1 as $wk)
+    {   
+        $work[] = $wk;
+    }
+    $args['work'] = $work;
+    
+    $edu = [];
+	$cursor2 = $educationTable->find(['user_id' => $_GET['user_id']]);
+    foreach($cursor2 as $ed)
+    {
+        $edu[] = $ed;
+    }
+    $args['edu'] = $edu;
+    
+	return $this->renderer->render($response, 'resume.php', $args);
+});
+
+
 $app->post('/addWork', function ($request, $response, $args) {
 	$client = new MongoDB\Client("mongodb://localhost:27017");
 	$workTable = $client->swproject->work;
@@ -95,8 +131,8 @@ $app->post('/addPersonal', function ($request, $response, $args) {
 
 $app->post('/addEducation', function ($request, $response, $args) {
 	$client = new MongoDB\Client("mongodb://localhost:27017");
-	$personalTable = $client->swproject->education;
-	$personalTable->insertOne(['user_id' => $_POST['user_id'], 
+	$educationTable = $client->swproject->education;
+	$educationTable->insertOne(['user_id' => $_POST['user_id'], 
 						'degree' => $_POST['degree'], 
 						'institution' => $_POST['institution'], 
 						'percentage' => $_POST['percentage'],
