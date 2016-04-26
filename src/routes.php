@@ -79,9 +79,7 @@ $app->get('/resume', function ($request, $response, $args) {
     
 	$personal = $personalTable->findOne(['user_id' => $_GET['user_id']]);
     $args['personal'] = $personal;
-    
-        
-    
+	
 	$cursor1 = $workTable->find(['user_id' => $_GET['user_id']]);
     $work=[];
     foreach($cursor1 as $wk)
@@ -142,11 +140,14 @@ $app->post('/addEducation', function ($request, $response, $args) {
 	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
 });
 
-//pass in the filename of the file to be captured in the url, eg. 
-// /capture?filename=login 
-// will generate the pdf of login.php located in the templates folders
-$app->get('/capture', function ($request, $response, $args) {
-	$filename = $request->getParam('filename');
+
+$app->post('/capture', function ($request, $response, $args) {
+	$filename = $_POST['filename'];
+	$args['edu'] = $_POST['edu'];
+	$args['personal'] = $_POST['personal'];
+	$args['work'] = $_POST['work'];
+	
 	$capture = new \CV\Capture\Capture;
-	$capture->load($filename . '.php');
+	$capture->load($filename . '.php', $args);
+	return print_r($args);
 });
