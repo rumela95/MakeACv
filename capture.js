@@ -10,12 +10,13 @@ page.viewportSize = {
 };
 
 page.paperSize = {
-	format: 'A2',
+	format: 'A4',
 	orientation: 'portrait',
-	margin: '1cm'
+	margin: '0cm'
 };
 
 page.onLoadFinished = function (status) {
-	page.render(args[1]);
+	document.body.bgColor = 'white';
+    page.render(args[1]);
 	phantom.exit();
 };

@@ -5,7 +5,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     </head>
     <style>
-        html,body,div,h1,h2,h3,h4,h5,h6,p,em,ul,li,article,section{
+        body,div,h1,h2,h3,h4,h5,h6,p,em,ul,li,article,section{
             border:0;
             font:inherit;
             font-size:100%;
@@ -18,8 +18,8 @@
             display:block;
         }
 
-        html, body {
-            background: #181818; 
+        body {
+            background: #ffffff; 
             font-family: 'Lato', helvetica, arial, sans-serif; 
             font-size: 16px; 
             color: #222;}
@@ -34,10 +34,8 @@
         }
 
         #resume {
-            width: 90%;
-            max-width: 800px;
+            width: 100%;
             background: #f3f3f3;
-            margin: 30px auto;
         }
 
         .mainDetails {
