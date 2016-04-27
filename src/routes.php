@@ -59,11 +59,34 @@ $app->get('/dashboard', function ($request, $response, $args) {
 	
 	$client = new MongoDB\Client("mongodb://localhost:27017");
 	$usersTable = $client->swproject->users;
+	$personalTable = $client->swproject->personal;
+    $workTable = $client->swproject->work;
+    $educationTable = $client->swproject->education;
 	
 	$user_id = new MongoDB\BSON\ObjectId($_GET['user_id']);
 	$user = $usersTable->findOne(['_id'=> $user_id ]);
 	$args['username'] = $user['username'];
 	$args['user_id'] = $_GET['user_id'];
+	
+	$personal = $personalTable->findOne(['user_id' => $_GET['user_id']]);
+    $args['personal'] = $personal;
+	
+	$cursor1 = $workTable->find(['user_id' => $_GET['user_id']]);
+    $work=[];
+    foreach($cursor1 as $wk)
+    {   
+        $work[] = $wk;
+    }
+    $args['work'] = $work;
+    
+    $edu = [];
+	$cursor2 = $educationTable->find(['user_id' => $_GET['user_id']]);
+    foreach($cursor2 as $ed)
+    {
+        $edu[] = $ed;
+    }
+    $args['edu'] = $edu;
+	
 	return $this->renderer->render($response, 'dashboard.php', $args);
 });
 

@@ -198,29 +198,25 @@
 							</div>
 						</div>
 					</div>
-                   <!-- <div id= "choice" class = "dropdown dropbtn btn"><a>Select Template</a>
-                        <div class="dropdown-content" style="left = 0" >
-                            <a href="?choice=1">CV</a>
-                            <a href="?choice=2" >Resume</a>
-                            <a href="?choice=3">Bio-data</a>
-                            
-                        </div>
-                    
-                    </div>
-                    <div id="choice">
-                    </*?php 
-                        switch($_GET['choice']){
-                            case 1: include 'cv.php'; break;
-                            case 2: include 'resume.php'; break;
-                            case 3: include 'biodata.php'; break;
-                            default:
-                                    
-                        }
-                    ?>
-                    </div> -->
 				</div>
 				<div id="personal" class="tab-pane fade">
 					<h2>Personal Details</h2>
+					<div class='sec'>
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h2><?= $personal['name'] ?></h3>
+							</div>
+							<div class="panel-body">
+								<p>
+									<strong>Phone : </strong><?= $personal['phone'] ?><br>
+									<strong>Email : </strong><?= $personal['email'] ?><br>
+									<strong>Address : </strong><?= $personal['address'] ?><br>
+									<strong>Date of Birth: </strong><?= $personal['dob'] ?><br>
+									<?= $personal['achievements'] ?>
+								</p>
+							</div>
+						</div>
+					</div>
 					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_personal"><i class="fa fa-plus"></i>Add</button>
 						<div id="new_personal" class="collapse">
@@ -261,6 +257,29 @@
 				<div id="work" class="tab-pane fade">
 					<h2>Work Experience</h2>
 					<div class='sec'>
+						<div class='row'>
+							<?php 
+							foreach($work as $wk)
+							{ ?>
+								<div class="col-sm-4">
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h2><?= $wk['position'] ?></h2>
+											<h3>At <strong><?= $wk['organisation'] ?></strong></h3>
+										</div>
+										<div class="panel-body">
+											<p><?= $wk['details'] ?></p>
+											<p><?= $wk['achievements'] ?></p>
+										</div>
+										<div class="panel-footer">
+											Duration : <span><?= $wk['duration'] ?> months</span>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_work"><i class="fa fa-plus"></i>Add New</button>
 						<div id="new_work" class="collapse">
 							<form role="form" method="POST" action="/addWork">
@@ -295,6 +314,29 @@
 				</div>
 				<div id="education" class="tab-pane fade">
 					<h2>Educational Details</h2>
+					<div class='sec'>
+						<div class='row'>
+						<?php 
+                        foreach($edu as $ed)
+						{ ?>
+							<div class="col-sm-4">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h2><?= $ed['degree'] ?></h2>
+										<h3>From <strong><?= $ed['institution'] ?></strong></h3>
+									</div>
+									<div class="panel-body">
+										<p>Passed with <?= $ed['percentage'] ?> percent marks in all fields</p>
+										<p><?= $ed['achievements'] ?></p>
+									</div>
+									<div class="panel-footer">
+										Batch of <?= $ed['end_year'] ?> </span>
+									</div>
+								</div>
+							</div>
+						<?php } ?>
+					</div><br>
+					</div>
 					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_education"><i class="fa fa-plus"></i>Add New</button>
 						<div id="new_education" class="collapse">
