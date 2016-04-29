@@ -166,7 +166,7 @@
 										<p class = "cv description">Projects. Internships. Academics. And you are getting ready to go on board with the first of your real jobs. If this is your story, then go ahead and create your <strong>CV</strong>, highlighting your academics, projects and internships.</p>
 									</div>
 									<div class="panel-footer">
-										<a class="btn btn-info btn-lg" href="#">Create CV  <i class="fa fa-chevron-right"></i></a>
+										<a class="btn btn-info btn-lg" href="/cv?user_id=<?php echo $_GET['user_id'];?>">Create CV  <i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -212,6 +212,9 @@
 									<strong>Email : </strong><?= $personal['email'] ?><br>
 									<strong>Address : </strong><?= $personal['address'] ?><br>
 									<strong>Date of Birth: </strong><?= $personal['dob'] ?><br>
+                                    <strong>Father's Name: </strong><?= $personal['fname'] ?><br>
+                                    <strong>Hobby: </strong><?= $personal['hobby'] ?><br>
+                                    <strong>Objective: </strong><?= $personal['objectives'] ?><br>
 									<?= $personal['achievements'] ?>
 								</p>
 							</div>
@@ -229,6 +232,10 @@
 									<label for="name" class="weird-font-small"> Name </label>
 									<input type="text" name="name" id ="name"></input>
 								</div>
+                                <div class = "form-group">
+									<label for="fname" class="weird-font-small"> Father's Name </label>
+									<input type="text" name="fname" id ="fname"></input>
+								</div>
 								<div class = "form-group">
 									<label for="phone" class="weird-font-small"> Phone </label>
 									<input type="text" name="phone" id="phone"></input>
@@ -238,12 +245,20 @@
 									<input type="text" name="email" id ="email"></input>
 								</div>
 								<div class = "form-group">
-									<label for="dob" class="weird-font-small"> Date of Birth</label>
+									<label for="dob" class="weird-font-small"> Date of Birth </label>
 									<input type="text" name="dob" id ="dob"></input>
+								</div>
+                                <div class = "form-group">
+									<label for="hobby" class="weird-font-small"> Hobby </label>
+									<input type="text" name="hobby" id ="hobby"></input>
 								</div>
 								<div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Address </label>
 									<textarea rows="4" cols="50" name="address" id="address"></textarea>
+								</div>
+                                <div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Career Objective </label>
+									<textarea rows="4" cols="50" name="objectives" id="objectives"></textarea>
 								</div>
 								<div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Achievements </label>
