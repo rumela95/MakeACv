@@ -155,6 +155,38 @@ $app->get('/cv', function ($request, $response, $args) {
 	return $this->renderer->render($response, 'cv.php', $args);
 });
 
+$app->get('/biodata', function ($request, $response, $args) {
+	
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$usersTable = $client->swproject->users;
+    $personalTable = $client->swproject->personal;
+    $workTable = $client->swproject->work;
+    $educationTable = $client->swproject->education;
+    
+	$user_id = $_GET['user_id'];
+    
+	$personal = $personalTable->findOne(['user_id' => $_GET['user_id']]);
+    $args['personal'] = $personal;
+	
+	$cursor1 = $workTable->find(['user_id' => $_GET['user_id']]);
+    $work=[];
+    foreach($cursor1 as $wk)
+    {   
+        $work[] = $wk;
+    }
+    $args['work'] = $work;
+    
+    $edu = [];
+	$cursor2 = $educationTable->find(['user_id' => $_GET['user_id']]);
+    foreach($cursor2 as $ed)
+    {
+        $edu[] = $ed;
+    }
+    $args['edu'] = $edu;
+    
+	return $this->renderer->render($response, 'biodata.php', $args);
+});
+
 
 $app->post('/addWork', function ($request, $response, $args) {
 	$client = new MongoDB\Client("mongodb://localhost:27017");

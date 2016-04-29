@@ -192,7 +192,7 @@
 										<p class = "biodata description">Stepping your first few steps in this wide world named "INDUSTRY"? Well you are at the right place. A Biodata will wrap up the "you" that you are in the most effective way and help you reach out to the world. So start making your <strong>Biodata</strong> and give a kick start to your career NOW!!</p>
 									</div>
 									<div class="panel-footer">
-										<a class="btn btn-info btn-lg" href="#">Create Bio-data  <i class="fa fa-chevron-right"></i></a>
+										<a class="btn btn-info btn-lg" href="/biodata?user_id=<?php echo $_GET['user_id'];?>">Create Bio-data  <i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
