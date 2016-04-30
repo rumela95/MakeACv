@@ -200,7 +200,13 @@ $app->post('/addWork', function ($request, $response, $args) {
 					]);
 	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
 });
-
+$app->post('/deleteWork', function ($request, $response, $args) {
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$workTable = $client->swproject->work;
+	$id = new MongoDB\BSON\ObjectId($_POST['id']);
+	$workTable->deleteOne(['_id' => $id]);
+	return $_POST['id'];
+});
 $app->post('/addPersonal', function ($request, $response, $args) {
 	$client = new MongoDB\Client("mongodb://localhost:27017");
 	$personalTable = $client->swproject->personal;
@@ -250,6 +256,13 @@ $app->post('/addEducation', function ($request, $response, $args) {
 	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
 });
 
+$app->post('/deleteEducation', function ($request, $response, $args) {
+	$client = new MongoDB\Client("mongodb://localhost:27017");
+	$educationTable = $client->swproject->education;
+	$id = new MongoDB\BSON\ObjectId($_POST['id']);
+	$educationTable->deleteOne(['_id' => $id]);
+	return $_POST['id'];
+});
 
 $app->post('/capture', function ($request, $response, $args) {
 	$filename = $_POST['filename'];

@@ -287,9 +287,12 @@
 											<p><?= $wk['achievements'] ?></p>
 										</div>
 										<div class="panel-footer">
-											Duration : <span><?= $wk['duration'] ?> months</span>
+											Duration : <span><?= $wk['duration'] ?> months</span>											
 										</div>
-									</div>
+										<div class="panel-footer">
+											<button class="btn btn-lg btn-danger" onclick="delWork('<?= $wk["_id"] ?>')"><i class="fa fa-trash"></i></button>
+										</div>
+									</div>									
 								</div>
 							<?php } ?>
 						</div>
@@ -331,26 +334,29 @@
 					<h2>Educational Details</h2>
 					<div class='sec'>
 						<div class='row'>
-						<?php 
-                        foreach($edu as $ed)
-						{ ?>
-							<div class="col-sm-4">
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<h2><?= $ed['degree'] ?></h2>
-										<h3>From <strong><?= $ed['institution'] ?></strong></h3>
-									</div>
-									<div class="panel-body">
-										<p>Passed with <?= $ed['percentage'] ?> percent marks in all fields</p>
-										<p><?= $ed['achievements'] ?></p>
-									</div>
-									<div class="panel-footer">
-										Batch of <?= $ed['end_year'] ?> </span>
+							<?php 
+							foreach($edu as $ed)
+							{ ?>
+								<div class="col-sm-4">
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h2><?= $ed['degree'] ?></h2>
+											<h3>From <strong><?= $ed['institution'] ?></strong></h3>
+										</div>
+										<div class="panel-body">
+											<p>Passed with <?= $ed['percentage'] ?> percent marks in all fields</p>
+											<p><?= $ed['achievements'] ?></p>
+										</div>
+										<div class="panel-footer">
+											Batch of <?= $ed['end_year'] ?> </span>										
+										</div>
+										<div class="panel-footer">
+											<button class="btn btn-lg btn-danger" onclick="delEdu('<?= $ed["_id"] ?>')"><i class="fa fa-trash"></i></button>
+										</div>
 									</div>
 								</div>
-							</div>
 						<?php } ?>
-					</div><br>
+						</div>
 					</div>
 					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_education"><i class="fa fa-plus"></i>Add New</button>
@@ -388,4 +394,21 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		function delWork(id){
+			var data = {"id" : id};
+			$.post("/deleteWork",data,function(response){
+				console.log("Deleted "+response);
+				location.href="/dashboard?user_id=<?= $_GET['user_id'] ?>";
+			});
+		};
+		
+		function delEdu(id){
+			var data = {"id" : id};
+			$.post("/deleteEducation",data,function(response){
+				console.log("Deleted "+response);
+				location.href="/dashboard?user_id=<?= $_GET['user_id'] ?>";
+			});
+		};
+	</script>
 </html>
