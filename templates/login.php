@@ -72,7 +72,7 @@
 								</div>
 								<div class = "form-group">
 									<label for="password" class="weird-font-small"> Password </label>
-									<input type="text" name="password" id="password"></input>
+									<input type="password" name="password" id="password"></input>
 								</div>
 								<input type="submit" class ="btn btn-primary btn-lg" value="Login"> </input>
 							</form>

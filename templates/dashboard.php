@@ -230,39 +230,39 @@
 								
 								<div class = "form-group">
 									<label for="name" class="weird-font-small"> Name </label>
-									<input type="text" name="name" id ="name"></input>
+									<input type="text" name="name" id ="name" value="<?= isset($personal['name'])?$personal['name']:"" ?>"></input>
 								</div>
                                 <div class = "form-group">
 									<label for="fname" class="weird-font-small"> Father's Name </label>
-									<input type="text" name="fname" id ="fname"></input>
+									<input type="text" name="fname" id ="fname" value="<?= isset($personal['fname'])?$personal['fname']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label for="phone" class="weird-font-small"> Phone </label>
-									<input type="text" name="phone" id="phone"></input>
+									<input type="text" name="phone" id="phone" value="<?= isset($personal['phone'])?$personal['phone']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label for="email" class="weird-font-small"> Email</label>
-									<input type="text" name="email" id ="email"></input>
+									<input type="text" name="email" id ="email" value="<?= isset($personal['email'])?$personal['email']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label for="dob" class="weird-font-small"> Date of Birth </label>
-									<input type="text" name="dob" id ="dob"></input>
+									<input type="text" name="dob" id ="dob" value="<?= isset($personal['dob'])?$personal['dob']:"" ?>"></input>
 								</div>
                                 <div class = "form-group">
 									<label for="hobby" class="weird-font-small"> Hobby </label>
-									<input type="text" name="hobby" id ="hobby"></input>
+									<input type="text" name="hobby" id ="hobby" value="<?= isset($personal['hobby'])?$personal['hobby']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Address </label>
-									<textarea rows="4" cols="50" name="address" id="address"></textarea>
+									<textarea rows="4" cols="50" name="address" id="address"><?= isset($personal['address'])?$personal['address']:"" ?></textarea>
 								</div>
                                 <div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Career Objective </label>
-									<textarea rows="4" cols="50" name="objectives" id="objectives"></textarea>
+									<textarea rows="4" cols="50" name="objectives" id="objectives"><?= isset($personal['objectives'])?$personal['objectives']:"" ?></textarea>
 								</div>
 								<div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Achievements </label>
-									<textarea rows="4" cols="50" name="achievements" id="achievements"></textarea>
+									<textarea rows="4" cols="50" name="achievements" id="achievements"><?= isset($personal['achievements'])?$personal['achievements']:"" ?></textarea>
 								</div>
 								<input type="submit" class ="btn btn-primary btn-lg" value="Add"></input>
 							</form>

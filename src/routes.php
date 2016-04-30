@@ -204,7 +204,10 @@ $app->post('/addWork', function ($request, $response, $args) {
 $app->post('/addPersonal', function ($request, $response, $args) {
 	$client = new MongoDB\Client("mongodb://localhost:27017");
 	$personalTable = $client->swproject->personal;
-	$personalTable->insertOne(['user_id' => $_POST['user_id'], 
+	$check = $personalTable->findOne(['user_id' => $_POST['user_id']]);
+	if($check == null)
+	{
+		$personalTable->insertOne(['user_id' => $_POST['user_id'], 
 						'name' => $_POST['name'], 
 						'phone' => $_POST['phone'], 
 						'dob' => $_POST['dob'],
@@ -215,6 +218,22 @@ $app->post('/addPersonal', function ($request, $response, $args) {
                         'hobby' => $_POST['hobby'],
                         'fname' => $_POST['fname']
 					]);
+	}
+	else
+	{
+		$personalTable->updateOne(['user_id' => $_POST['user_id']],
+					[ '$set' => [ 'user_id' => $_POST['user_id'],
+						'name' => $_POST['name'], 
+						'phone' => $_POST['phone'], 
+						'dob' => $_POST['dob'],
+						'email' => $_POST['email'],
+						'address' => $_POST['address'],
+						'achievements' => $_POST['achievements'],
+                        'objectives' => $_POST['objectives'],
+                        'hobby' => $_POST['hobby'],
+                        'fname' => $_POST['fname']
+					]]);
+	}
 	return $response->withRedirect('/dashboard?user_id=' . $_POST['user_id']);
 });
 
