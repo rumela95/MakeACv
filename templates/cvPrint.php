@@ -88,7 +88,7 @@
          }
          
         dd { 
-            width: 800px; 
+            width: 500px; 
             float: left; 
             margin-left: 20px;
         }
