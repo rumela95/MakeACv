@@ -5,7 +5,6 @@
     <head>
 
         <title>CV</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     </head>
 
      <style type="text/css">
@@ -89,7 +88,7 @@
          }
          
         dd { 
-            width: 800px; 
+            width: 500px; 
             float: left; 
             margin-left: 20px;
         }
@@ -108,17 +107,17 @@
     
     
         <div id="contact-info" >
-            <h1><?= $personal['name'] ?></h1>
+            <h1>{{ personal[0].name }}</h1>
         
             <p>
-                Phone: <?= $personal['phone'] ?><br />
-                Email: <?= $personal['email'] ?>
+                Phone: {{ personal[0].phone }}<br />
+                Email: {{ personal[0].email }}
             </p>
         </div>
                 
         <div id="objective">
             <p>
-                <?= $personal['objectives'] ?>
+                {{ personal[0].objectives }}
             </p>
         </div>
         
@@ -128,47 +127,39 @@
             <dd class="clear"></dd>
             
             <dt>Education</dt>
-            <?php
-                        foreach($edu as $ed)
-                        { ?>
+				{% for ed in edu %}
                         <dd>
-                            <h2><?= $ed['institution'] ?></h2>
-                            <p><?= $ed['degree'] ?></p>
-                            <p>Passed with <?= $ed['percentage'] ?> percent marks in all fields</p>
+                            <h2>{{ ed.institution }}</h2>
+                            <p>{{ ed.degree }}</p>
+                            <p>Passed with {{ ed.percentage }} percent marks in all fields</p>
                         </dd>
-            <?php } ?>
+				{% endfor %}
             
             <dd class="clear"></dd>
             
             <dt>Internships And Projects</dt>
-            <?php 
-                        foreach($work as $wk)
-                        { ?>
+				{% for wk in work %}
                             <dd>
-                               <h2><?= $wk['position'] ?> at <?= $wk['organisation'] ?></h2>
-                               <p class="subDetails"><?= $wk['duration'] ?> months</p>
-                               <p><?= $wk['details'] ?></p>
+                               <h2>{{ wk.position }} at {{ wk.organisation }}</h2>
+                               <p class="subDetails">{{ wk.duration }} months</p>
+                               <p>{{ wk.details }}</p>
                             <dd>
-            <?php } ?>
+				{% endfor %}
             
             <dd class="clear"></dd>
             
             <dt>Achievements</dt>
                         <dd>
-                            <?php
-                            foreach($edu as $ed)
-                            { ?>
-                            <p><strong>At <?= $ed['institution'] ?>:</strong></p>
-                            <p><?= $ed['achievements'] ?></p>
-                            <?php } ?>
-                            <?php
-                            foreach($work as $wk)
-                            { ?>
-                            <p><strong>At <?= $wk['organisation'] ?>:</strong></p>
-                            <p><?= $wk['achievements'] ?></p>
-                            <?php } ?>
+                           {% for ed in edu %}
+                            <p><strong>At {{ ed.institution }}:</strong></p>
+                            <p>{{ ed.achievements }}</p>
+                            {% endfor %}
+                            {% for wk in work %}
+                            <p><strong>At {{ wk.organisation }}:</strong></p>
+                            <p>{{ wk.achievements }}</p>
+                            {% endfor %}
                             <p><strong>Others:</strong></p>
-                            <p><?= $personal['achievements'] ?></p>
+                            <p>{{ personal[0].achievements }}</p>
                         </dd>
             
             <dd class="clear"></dd>
@@ -177,8 +168,8 @@
             
             <dt>Personal Profile</dt>
                         <dd>
-                            <p><strong>Date of Birth:</strong><?= $personal['dob'] ?><p>
-                            <p><strong>Address:</strong><?= $personal['address'] ?><p>
+                            <p><strong>Date of Birth:</strong>{{ personal[0].dob }}<p>
+                            <p><strong>Address:</strong>{{ personal[0].address }}<p>
 
                         </ul>
             
@@ -188,15 +179,5 @@
         <div class="clear"></div>
     
     </div>
-	<button onclick="printFunc()">Print</button>
 </body>
-<script>
-		function printFunc(){
-			var details = <?php echo '{"filename":"cvPrint","personal":[' . json_encode($personal) . '],"work":' . json_encode($work) . ',"edu":' . json_encode($edu) .'}'?> ;
-			$.post("/capture",details,function(data){
-				console.log("Generated "+data);
-			});
-		}
-</script>
-
 </html>

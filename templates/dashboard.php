@@ -166,7 +166,7 @@
 										<p class = "cv description">Projects. Internships. Academics. And you are getting ready to go on board with the first of your real jobs. If this is your story, then go ahead and create your <strong>CV</strong>, highlighting your academics, projects and internships.</p>
 									</div>
 									<div class="panel-footer">
-										<a class="btn btn-info btn-lg" href="#">Create CV  <i class="fa fa-chevron-right"></i></a>
+										<a class="btn btn-info btn-lg" href="/cv?user_id=<?php echo $_GET['user_id'];?>">Create CV  <i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -179,7 +179,7 @@
 										<p class = "resume description">Does your experiences in the industry define your personnel? Then go ahead to make your <strong>Resume</strong> that will highlight your tresure chest of knowledge and encourage employers across the globe to hire you. GO AHEAD! Make the mark!</p>
 									</div>
 									<div class="panel-footer">
-										<a class="btn btn-info btn-lg" href="#">Create Resume  <i class="fa fa-chevron-right"></i></a>
+										<a class="btn btn-info btn-lg" href="/resume?user_id=<?php echo $_GET['user_id'];?>">Create Resume  <i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -192,35 +192,34 @@
 										<p class = "biodata description">Stepping your first few steps in this wide world named "INDUSTRY"? Well you are at the right place. A Biodata will wrap up the "you" that you are in the most effective way and help you reach out to the world. So start making your <strong>Biodata</strong> and give a kick start to your career NOW!!</p>
 									</div>
 									<div class="panel-footer">
-										<a class="btn btn-info btn-lg" href="#">Create Bio-data  <i class="fa fa-chevron-right"></i></a>
+										<a class="btn btn-info btn-lg" href="/biodata?user_id=<?php echo $_GET['user_id'];?>">Create Bio-data  <i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-                   <!-- <div id= "choice" class = "dropdown dropbtn btn"><a>Select Template</a>
-                        <div class="dropdown-content" style="left = 0" >
-                            <a href="?choice=1">CV</a>
-                            <a href="?choice=2" >Resume</a>
-                            <a href="?choice=3">Bio-data</a>
-                            
-                        </div>
-                    
-                    </div>
-                    <div id="choice">
-                    </*?php 
-                        switch($_GET['choice']){
-                            case 1: include 'cv.php'; break;
-                            case 2: include 'resume.php'; break;
-                            case 3: include 'biodata.php'; break;
-                            default:
-                                    
-                        }
-                    ?>
-                    </div> -->
 				</div>
 				<div id="personal" class="tab-pane fade">
 					<h2>Personal Details</h2>
+					<div class='sec'>
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h2><?= $personal['name'] ?></h3>
+							</div>
+							<div class="panel-body">
+								<p>
+									<strong>Phone : </strong><?= $personal['phone'] ?><br>
+									<strong>Email : </strong><?= $personal['email'] ?><br>
+									<strong>Address : </strong><?= $personal['address'] ?><br>
+									<strong>Date of Birth: </strong><?= $personal['dob'] ?><br>
+                                    <strong>Father's Name: </strong><?= $personal['fname'] ?><br>
+                                    <strong>Hobby: </strong><?= $personal['hobby'] ?><br>
+                                    <strong>Objective: </strong><?= $personal['objectives'] ?><br>
+									<?= $personal['achievements'] ?>
+								</p>
+							</div>
+						</div>
+					</div>
 					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_personal"><i class="fa fa-plus"></i>Add</button>
 						<div id="new_personal" class="collapse">
@@ -231,27 +230,39 @@
 								
 								<div class = "form-group">
 									<label for="name" class="weird-font-small"> Name </label>
-									<input type="text" name="name" id ="name"></input>
+									<input type="text" name="name" id ="name" value="<?= isset($personal['name'])?$personal['name']:"" ?>"></input>
+								</div>
+                                <div class = "form-group">
+									<label for="fname" class="weird-font-small"> Father's Name </label>
+									<input type="text" name="fname" id ="fname" value="<?= isset($personal['fname'])?$personal['fname']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label for="phone" class="weird-font-small"> Phone </label>
-									<input type="text" name="phone" id="phone"></input>
+									<input type="text" name="phone" id="phone" value="<?= isset($personal['phone'])?$personal['phone']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label for="email" class="weird-font-small"> Email</label>
-									<input type="text" name="email" id ="email"></input>
+									<input type="text" name="email" id ="email" value="<?= isset($personal['email'])?$personal['email']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
-									<label for="dob" class="weird-font-small"> Date of Birth</label>
-									<input type="text" name="dob" id ="dob"></input>
+									<label for="dob" class="weird-font-small"> Date of Birth </label>
+									<input type="text" name="dob" id ="dob" value="<?= isset($personal['dob'])?$personal['dob']:"" ?>"></input>
+								</div>
+                                <div class = "form-group">
+									<label for="hobby" class="weird-font-small"> Hobby </label>
+									<input type="text" name="hobby" id ="hobby" value="<?= isset($personal['hobby'])?$personal['hobby']:"" ?>"></input>
 								</div>
 								<div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Address </label>
-									<textarea rows="4" cols="50" name="address" id="address"></textarea>
+									<textarea rows="4" cols="50" name="address" id="address"><?= isset($personal['address'])?$personal['address']:"" ?></textarea>
+								</div>
+                                <div class = "form-group">
+									<label class="weird-font-small" style = "display : block"> Career Objective </label>
+									<textarea rows="4" cols="50" name="objectives" id="objectives"><?= isset($personal['objectives'])?$personal['objectives']:"" ?></textarea>
 								</div>
 								<div class = "form-group">
 									<label class="weird-font-small" style = "display : block"> Achievements </label>
-									<textarea rows="4" cols="50" name="achievements" id="achievements"></textarea>
+									<textarea rows="4" cols="50" name="achievements" id="achievements"><?= isset($personal['achievements'])?$personal['achievements']:"" ?></textarea>
 								</div>
 								<input type="submit" class ="btn btn-primary btn-lg" value="Add"></input>
 							</form>
@@ -260,6 +271,32 @@
 				</div>
 				<div id="work" class="tab-pane fade">
 					<h2>Work Experience</h2>
+					<div class='sec'>
+						<div class='row'>
+							<?php 
+							foreach($work as $wk)
+							{ ?>
+								<div class="col-sm-4">
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h2><?= $wk['position'] ?></h2>
+											<h3>At <strong><?= $wk['organisation'] ?></strong></h3>
+										</div>
+										<div class="panel-body">
+											<p><?= $wk['details'] ?></p>
+											<p><?= $wk['achievements'] ?></p>
+										</div>
+										<div class="panel-footer">
+											Duration : <span><?= $wk['duration'] ?> months</span>											
+										</div>
+										<div class="panel-footer">
+											<button class="btn btn-lg btn-danger" onclick="delWork('<?= $wk["_id"] ?>')"><i class="fa fa-trash"></i></button>
+										</div>
+									</div>									
+								</div>
+							<?php } ?>
+						</div>
+					</div>
 					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_work"><i class="fa fa-plus"></i>Add New</button>
 						<div id="new_work" class="collapse">
@@ -296,6 +333,32 @@
 				<div id="education" class="tab-pane fade">
 					<h2>Educational Details</h2>
 					<div class='sec'>
+						<div class='row'>
+							<?php 
+							foreach($edu as $ed)
+							{ ?>
+								<div class="col-sm-4">
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h2><?= $ed['degree'] ?></h2>
+											<h3>From <strong><?= $ed['institution'] ?></strong></h3>
+										</div>
+										<div class="panel-body">
+											<p>Passed with <?= $ed['percentage'] ?> percent marks in all fields</p>
+											<p><?= $ed['achievements'] ?></p>
+										</div>
+										<div class="panel-footer">
+											Batch of <?= $ed['end_year'] ?> </span>										
+										</div>
+										<div class="panel-footer">
+											<button class="btn btn-lg btn-danger" onclick="delEdu('<?= $ed["_id"] ?>')"><i class="fa fa-trash"></i></button>
+										</div>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+					<div class='sec'>
 						<button class= 'btn btn-primary btn-lg' data-toggle="collapse" data-target="#new_education"><i class="fa fa-plus"></i>Add New</button>
 						<div id="new_education" class="collapse">
 							<form role="form" method="POST" action="/addEducation">
@@ -331,4 +394,21 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		function delWork(id){
+			var data = {"id" : id};
+			$.post("/deleteWork",data,function(response){
+				console.log("Deleted "+response);
+				location.href="/dashboard?user_id=<?= $_GET['user_id'] ?>";
+			});
+		};
+		
+		function delEdu(id){
+			var data = {"id" : id};
+			$.post("/deleteEducation",data,function(response){
+				console.log("Deleted "+response);
+				location.href="/dashboard?user_id=<?= $_GET['user_id'] ?>";
+			});
+		};
+	</script>
 </html>

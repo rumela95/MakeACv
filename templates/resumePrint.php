@@ -134,18 +134,18 @@
         }
         
     </style>
-    <body id="resume">
-        <div >
+    <body id="top">
+        <div id="resume">
             <div class="mainDetails">
                 <div id="name">
-                        <h1><?= $personal['name'] ?></h1> 
-                    <h2><?= $work[0]['position'] ?></h2>
+                        <h1>{{ personal[0].name }}</h1> 
+                    <h2>{{ work[0].position }}</h2>
                 </div>
 
                 <div id="contactDetails">
                     <ul>
-                        <li>e: <?= $personal['email'] ?></li>
-                        <li>m: <?= $personal['phone'] ?></li>
+                        <li>e: {{ personal[0].email }}</li>
+                        <li>m: {{ personal[0].phone }}</li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -159,15 +159,13 @@
                     </div>
 
                     <div class="sectionContent">
-                        <?php 
-                        foreach($work as $wk)
-                        { ?>
+                        {% for wk in work %}
                             <article>
-                               <h2><?= $wk['position'] ?> at <?= $wk['organisation'] ?></h2>
-                               <p class="subDetails"><?= $wk['duration'] ?> months</p>
-                               <p><?= $wk['details'] ?></p>
+                               <h2>{{ wk.position }} at {{ wk.organisation }}</h2>
+                               <p class="subDetails">{{ wk.duration }} months</p>
+                               <p>{{ wk.details }}</p>
                             </article>
-                        <?php } ?>
+                        {% endfor %}
 
                     </div>
                     <div class="clear"></div>
@@ -179,15 +177,13 @@
                     </div>
 
                     <div class="sectionContent">
-                        <?php
-                        foreach($edu as $ed)
-                        { ?>
-                        <article>
-                            <h2><?= $ed['institution'] ?></h2>
-                            <p class="subDetails"><?= $ed['degree'] ?></p>
-                            <p>Passed with <?= $ed['percentage'] ?> percent marks in all fields</p>
-                        </article>
-                        <?php } ?>
+                        {% for ed in edu %}
+                            <article>
+								<h2>{{ ed.institution }}</h2>
+								<p class="subDetails">{{ ed.degree }}</p>
+								<p>Passed with {{ ed.percentage }} percent marks in all fields</p>
+							</article>
+                        {% endfor %}
                     </div>
                     <div class="clear"></div>
                 </section>
@@ -199,20 +195,17 @@
 
                     <div class="sectionContent">
                         <ul class="achievement">
-                            <?php
-                            foreach($edu as $ed)
-                            { ?>
-                            <li><strong>At <?= $ed['institution'] ?>:</strong></li>
-                            <li><?= $ed['achievements'] ?></li>
-                            <?php } ?>
-                            <?php
-                            foreach($work as $wk)
-                            { ?>
-                            <li><strong>At <?= $wk['organisation'] ?>:</strong></li>
-                            <li><?= $wk['achievements'] ?></li>
-                            <?php } ?>
+                            {% for ed in edu %}
+                                <li><strong>At {{ ed.institution }}:</strong></li>
+								<li>{{ ed.achievements }}</li>
+                            {% endfor %} 
+                            
+                            {% for wk in work %}
+                                <li><strong>At {{ wk.organisation }}:</strong></li>
+								<li>{{ wk.achievements }}</li>
+							{% endfor %}
                             <li><strong>Others:</strong></li>
-                            <li><?= $personal['achievements'] ?></li>
+                            <li>{{ personal[0].achievements }}</li>
                         </ul>
                     </div>
                     <div class="clear"></div>
@@ -226,8 +219,8 @@
 
                         <div class="sectionContent">
                             <ul class="achievement">
-                            <li><strong>Date of Birth:</strong><?= $personal['dob'] ?></li>
-                            <li><strong>Address:</strong><?= $personal['address'] ?></li>
+                            <li><strong>Date of Birth:</strong>{{ personal[0].dob }}</li>
+                            <li><strong>Address:</strong>{{ personal[0].address }}</li>
 
                         </ul>
                         </div>
@@ -236,14 +229,5 @@
                 </section>
             </div>
         </div>
-		<button onclick="printFunc()">Print</button>
     </body>
-	<script>
-		function printFunc(){
-			var details = <?php echo '{"filename":"resumePrint","personal":[' . json_encode($personal) . '],"work":' . json_encode($work) . ',"edu":' . json_encode($edu) .'}'?> ;
-			$.post("/capture",details,function(data){
-				console.log("Generated "+data);
-			});
-		}
-	</script>
 </html>

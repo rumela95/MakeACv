@@ -28,10 +28,13 @@ Prequisites - PHP, Composer , MongoDB
   3. Collection - personal
     * user_id
     * name
+	* fname
     * phone
     * email
+	* hobby
     * dob
     * address
+	* objectives
     * achievements
 
   4. Collection - education

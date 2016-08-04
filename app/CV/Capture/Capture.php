@@ -27,7 +27,7 @@ class Capture
 	{
 		$response = new Response(file_get_contents($this->pdf),200, [
 			'Content-Description' => 'File Transfer',
-			'Content-Disposition' => 'attachment; filename="' . $filename .'"',
+			'Content-Disposition' => 'attachment; filename="' . $filename . '"',
 			'Content-Transfer-Encoding' => 'binary',
 			'Content-Type' => 'application/pdf',
 		]);
@@ -48,7 +48,7 @@ class Capture
 
 	protected function writeFile($view)
 	{
-		file_put_contents($path = __DIR__ . '/../../../storage/' . md5(uniqid()). '.pdf', $view);
+		file_put_contents($path = __DIR__ . '/../../../storage/' . 'Print' . '.pdf', $view);
 		return $path ;
 	}
 
